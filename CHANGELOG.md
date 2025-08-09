@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.68.3
+
+### Patch Changes
+
+- a5fbec0: Added server error handling for several "bad request" situations related to SolidStart.
+- 9806c6a: The `Section` blueprint shadow is now rendered with `box-shadow` and only switches to the filter-based `drop-shadow` strategy, if `Top Mask` or `Bottom Mask` is enabled.
+- e4fb588: Fixed images in the media library not being scaled properly.
+- 36685d5: Fixed a bug that caused the link widget of richtext editors in the sidebar, to be behind the sidebar.
+- 11512da: Elements in the `cta` slot of the `Header` blueprint will now only be rendered once. Previously they rendered twice (for mobile and desktop breakpoints).
+- 4d4f61d: CSS Module files are now manually chunked to prevent frames of unstyled content in certain situations.
+- 0a6b7e6: Added a default `prisma.config.ts` file to the starter kit, as a first preparation step towards Prisma 7.
+- 0c07f4a: Fixed a bug that prevented the creation of new fonts.
+- a95a27a: Updated dependencies.
+- 36237a6: New anchor links created in richtext fields now properly jump to the corresponding id, instead of opening in a new tab.
+- 5e67125: Fixed an issue that resulted in labels ending with single characters like `Padding Y` to be rendered as `Padding`.
+
 ## 0.68.2
 
 ### Patch Changes
