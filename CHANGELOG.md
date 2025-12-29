@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.69.0
+
+### Minor Changes
+
+- 718c883: Fixed animations from gif and webp images being removed during the image upload. Also excluded such images from the optimization.
+
+### Patch Changes
+
+- ac945ca: Updated dependencies.
+- 20a7927: Switched the starter kit icon package from `@iconify/json` to `@iconify-json/tabler`, to reduce the size by 405 MB. (#182)
+
 ## 0.68.3
 
 ### Patch Changes
