@@ -1,5 +1,89 @@
 # Changelog
 
+## 0.70.1
+
+### Patch Changes
+
+- e0837f1: Fixed a `fuzzysort.js doesn't provide an export named: 'default'` error, that showed up when creating new elements.
+
+## 0.70.0
+
+### Breaking Changes
+
+- 6a8efa4: Completely reworked the element selection and drag and drop UX in the viewport. The new implementation is based on [Pragmatic drag and drop](https://atlassian.design/components/pragmatic-drag-and-drop/core-package).
+
+  This includes the following improvements:
+  - The `Select` tool has been integrated into the `Move` tool.
+  - While creating or dragging:
+    - The target element information includes the name of the current slot.
+    - The hovered element is visualized with a wireframe.
+    - You can press `Shift` to cycle through the available slots.
+  - Blueprint components no longer have to manually specify a location for the drag and drop handles. `props.handles` is obsolete 🎉!
+  - The direction of blueprints slots is now automatically inferred based on the positioning of the slot children. **The `direction` prop of `props.Slot` has therefore been removed!**
+  - The `expand` class from `nitropage/css` has been deprecated.
+  - Blueprint component `props.lax` has been deprecated.
+
+- 970f4d7: The routing setup has been simplified and extended with new options. (#45)
+
+  Your projects no longer need the `src/routes/[...page].tsx` and `src/routes/admin/[...route].tsx` files. Instead you can directly specify the Nitropage specific routes in your `app.tsx`:
+
+  ```tsx
+  import config from "#client";
+  import { FileRoutes } from "@solidjs/start/router";
+  import { AdminRoutes, PageRoutes, Router } from "nitropage";
+
+  export default function App() {
+    return (
+      <Router config={config}>
+        <AdminRoutes />
+        <PageRoutes />
+        <FileRoutes />
+      </Router>
+    );
+  }
+  ```
+
+  **As part of this change both `Nitropage` and `Admin` exports have been removed from `nitropage`!** The new approach opens a lot of exciting possibilities. For example you can now nest your own `<Route>`'s in `AdminRoutes` to define custom Admin routes. This is just a first step on the road to a flexible and extensible Dashboard, stay tuned for more improvements!
+
+- ff1f64b: The polymorphic props of the `Rte` and `Slot` components, and the starter kit `Button` component have been renamed from `component` to `as` and the components now properly autocomplete the available props from their respective HTML element. (#149)
+- c2ee5c3: Changed the type of the `title` property of blueprints and blueprint data from `() => string` to `string`, to simplify the usage of these configurations.
+
+### Minor Changes
+
+- 6b1ac7b: Added a fuzzy search field to the element creation dialog and visually overhauled the dialog in general.
+- e34236a: The richtext color preset settings are now rendered in an overlay.
+- be0f7e0: Added a new `Use light variant only` option to the color picker, forcing it to use the light variant of the current preset. The UX of the picker has also been justified to better show the end result of the selected options. (#131)
+- 4ed1389: The color presets can now be reordered via drag and drop. (#187)
+- 2c905ef: Color pickers are now shown as overlays instead of sliding out and they are visually cleaned up a bit.
+- 0542ca1: Replaced the icon of the text tool with a more comprehensible one.
+- 25788a6: The keyboard shortcuts help modal can now be opened by pressing `F1`.
+- ce69114: Draggable items in the sidebar such as elements and `listData` items, can now be picked up along their whole horizontal width.
+- b128712: An arrow has been added to the overlays to indicate which element the respective overlay refers to.
+- e03a649: Overhauled the `fontData` user interface. The different options line up more neatly now and take up less space.
+- ce69114: Added a dropdown menu to the elements list in the sidebar, including a new delete action. (#87)
+- ce69114: Element delete and duplicate actions can now be triggered with keyboard shortcuts.
+- 009ee10: Improved the visual consistency of several buttons and form elements.
+- e1a0015: Element breadcrumbs are now skewed like the logo.
+- 0ec95c3: Element settings from `toggleData` are now rendered as modern toggles instead of checkboxes.
+- bbcc7d7: Moved the preset selection button into the `Preset`-tab and converted it into an overlay.
+- 79d6d40: Long preset and slot selection lists now are rendered in scrolled sections.
+- e5ec211: Double clicking on the zoom handle will now toggle between 85% and 100% zoom. (#147)
+- 0e73cd3: Overhauled the element settings reset and override section, adding clearer icons, titles and a new separator.
+- 7279e5b: Updated dependencies.
+
+### Patch Changes
+
+- 87a0332: Reduced text color class redundancy in `contactGrid`, `qrLink` and `header` starter blueprints. (#38)
+- 55bea63: Fixed file uploads for SolidStart 1.3.
+- e19691b: Fixed an issue that caused the image upload to ignore the maximum images setting (`max`) in blueprint data.
+- 11530da: An issue where layout slots were not copied when duplicating layouts, has been fixed.
+- 9ddaff2: Slightly improved the color picker performance and fixed a small memory leak related to color styles.
+- f7f3e02: Fixed an issue that resulted in a `Named export 'PrismaClient' not found.` server error in non-node environments. (#203)
+- 484c95e: Fixed placeholder images not being correctly optimized according to the requested size.
+- d485194: Fixed editor not properly switching to `Create` mode on empty pages in `DEV` environment.
+- 51e78bb: Optimized richtext editor loading and instance management.
+- 6608fd5: Fixed pressing escape, while editing preset-/slot-titles, closes the overlay instead of stops the editing.
+
 ## 0.69.0
 
 ### Minor Changes
