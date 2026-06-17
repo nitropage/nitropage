@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.70.3
+
+### Patch Changes
+
+- 31c1350: Fixed the editor failing to save after creating new color presets.
+- 3e4a40f: Fixed modals such as color pickers in the editor sidebar resulting in duplicate scrollbars, depending on the size of the browser window and modal position. (#213)
+
+## 0.70.2
+
+### Patch Changes
+
+- e93c02c: Fixed admin styles being rendered on the actual page routes.
+- 21539a7: Fixed richtext editors not properly updating their toolbars anymore after hot module replacement.
+
 ## 0.70.1
 
 ### Patch Changes
